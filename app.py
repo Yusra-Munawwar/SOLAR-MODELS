@@ -22,7 +22,6 @@ app.add_middleware(
 )
 
 # Load models
-ann_model = load_model('ann_model.keras')
 rf_model = joblib.load('rf_model.pkl')
 gb_model = joblib.load('gb_model.pkl')
 
@@ -97,11 +96,5 @@ async def predict_gb(input_data: InputData):
     except Exception as e:
         return {"error": str(e)}
 
-@app.post("/predict/ann")
-async def predict_ann(input_data: InputData):
-    try:
-        prediction = predict(input_data, ann_model)
-        return {"predicted_power": float(prediction)}
-    except Exception as e:
-        return {"error": str(e)}
+
     
