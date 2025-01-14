@@ -12,6 +12,10 @@ from tensorflow.keras.models import load_model
 # Define your FastAPI app
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the API"}
+    
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
