@@ -22,7 +22,6 @@ app.add_middleware(
 )
 
 # Load models
-rf_model = joblib.load('rf_model.pkl')
 gb_model = joblib.load('gb_model.pkl')
 
 # Load the scaler
@@ -80,13 +79,6 @@ def predict(input_data, model):
     return prediction[0]
 
 # API endpoints
-@app.post("/predict/rf")
-async def predict_rf(input_data: InputData):
-    try:
-        prediction = predict(input_data, rf_model)
-        return {"predicted_power": float(prediction)}
-    except Exception as e:
-        return {"error": str(e)}
 
 @app.post("/predict/gb")
 async def predict_gb(input_data: InputData):
